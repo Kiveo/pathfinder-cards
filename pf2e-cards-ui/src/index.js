@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom';
 import { ThemeProvider } from 'styled-components';
 import './index.css';
 
-// import App from './App';
 import Theme from 'themes/Theme';
-import App from './Login';
+// todo: setup router
+// import App from './App';
+// import App from './Login';
+import App from './SignUp';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(

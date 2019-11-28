@@ -10,10 +10,6 @@ const Page = styled.div`
   color: ${(props) => props.theme.secondary};
   font-family: ${(props) => props.theme.primaryFont};
   background: ${(props) => props.theme.pageBg};
-  .highlight {
-    color: ${(props) => props.theme.highlight};
-    font-weight: bold;
-  };
 `;
 
 export default Page;

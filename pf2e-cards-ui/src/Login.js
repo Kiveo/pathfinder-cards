@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Button, Form, Input } from 'components/inputs';
 import { Page, PageHeading } from 'components/core';
+import { Button, Form, Input } from 'components/inputs';
+import { Highlight } from 'components/visual';
 
 const Login = () => {
   // -- state --
@@ -32,7 +33,7 @@ const Login = () => {
       {userData && (
         <p>
           Welcome,
-          <span className="highlight">{` ${userData.username}`}</span>
+          <Highlight className="highlight">{` ${userData.username}`}</Highlight>
         </p>
       )}
     </Page>
