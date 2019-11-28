@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Button, Form, Input } from 'components/inputs';
 import { PageHeading } from 'components/core';
@@ -14,18 +14,46 @@ const StyledLogin = styled.section`
   color: ${(props) => props.theme.secondary};
   font-family: ${(props) => props.theme.primaryFont};
   background: ${(props) => props.theme.pageBg};
+  #greeting {
+    color: ${(props) => props.theme.highlight};
+    font-weight: bold;
+  };
 `;
 
-// -- RENDER --
-const Login = () => (
-  <StyledLogin>
-    <PageHeading>Sign In</PageHeading>
-    <Form>
-      <Input type="text" name="username" placeholder="Username" />
-      <Input type="password" name="password" placeholder="Password" />
-      <Button type="submit">Submit</Button>
-    </Form>
-  </StyledLogin>
-);
+// -- COMPONENT --
+const Login = () => {
+  // -- state --
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [userData, setUserData] = useState(null);
+
+  // -- handlers --
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const user = {
+      username,
+      password,
+    };
+    setUserData(user);
+  };
+
+  // -- Render --
+  return (
+    <StyledLogin>
+      <PageHeading>Sign In</PageHeading>
+      <Form>
+        <Input type="text" name="username" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
+        <Input type="password" name="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <Button type="submit" onClick={handleSubmit}>Submit</Button>
+      </Form>
+      {userData && (
+        <p>
+          Welcome,
+          <span id="greeting">{` ${userData.username}`}</span>
+        </p>
+      )}
+    </StyledLogin>
+  );
+};
 
 export default Login;
