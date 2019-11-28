@@ -1,26 +1,7 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { Button, Form, Input } from 'components/inputs';
-import { PageHeading } from 'components/core';
+import { Page, PageHeading } from 'components/core';
 
-// -- styles --
-const StyledLogin = styled.section`
-  height: 100vh;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  color: ${(props) => props.theme.secondary};
-  font-family: ${(props) => props.theme.primaryFont};
-  background: ${(props) => props.theme.pageBg};
-  #greeting {
-    color: ${(props) => props.theme.highlight};
-    font-weight: bold;
-  };
-`;
-
-// -- COMPONENT --
 const Login = () => {
   // -- state --
   const [username, setUsername] = useState('');
@@ -41,7 +22,7 @@ const Login = () => {
 
   // -- Render --
   return (
-    <StyledLogin>
+    <Page>
       <PageHeading>Sign In</PageHeading>
       <Form>
         <Input type="text" name="username" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
@@ -51,10 +32,10 @@ const Login = () => {
       {userData && (
         <p>
           Welcome,
-          <span id="greeting">{` ${userData.username}`}</span>
+          <span className="highlight">{` ${userData.username}`}</span>
         </p>
       )}
-    </StyledLogin>
+    </Page>
   );
 };
 
