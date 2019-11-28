@@ -35,6 +35,8 @@ const Login = () => {
       password,
     };
     setUserData(user);
+    setUsername('');
+    setPassword('');
   };
 
   // -- Render --
