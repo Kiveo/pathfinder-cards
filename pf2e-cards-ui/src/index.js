@@ -4,12 +4,12 @@ import { ThemeProvider } from 'styled-components';
 import './index.css';
 
 // import App from './App';
+import Theme from 'themes/Theme';
 import App from './Login';
 import * as serviceWorker from './serviceWorker';
-import { theme } from './Theme';
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}><App /></ThemeProvider>,
+  <ThemeProvider theme={Theme}><App /></ThemeProvider>,
   document.getElementById('root'),
 );
 
