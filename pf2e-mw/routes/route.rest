@@ -1,0 +1,25 @@
+GET http://localhost:3000/cards
+
+###
+GET http://localhost:3000/cards/5de1bb95acebae1ee4beae3e
+
+###
+
+POST http://localhost:3000/cards
+Content-Type: application/json
+
+{
+  "name": "Proto Card",
+  "description": "An alpha prototype card"
+}
+
+###
+PATCH http://localhost:3000/cards/5de1bfc8c891d63d948d1c8c
+Content-Type: application/json
+
+{
+  "name": "Alpha 2.0 Name"
+}
+
+###
+DELETE http://localhost:3000/cards/5de1bb3b1bd8bd17b02e16fd
