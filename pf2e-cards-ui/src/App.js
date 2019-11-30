@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from 'react';
 
 const App = () => {
-  // -- lifecycles and hooks --
-  const [sample, setSample] = useState(0);
-  const [next, setNext] = useState(0);
+  // -- state --
+  const [cards, setCards] = useState([]);
+
   useEffect(() => {
-    setNext(sample + 1);
-  }, [sample]);
+    fetch('/cards')
+      .then((response) => response.json())
+      .then((formattedResponse) => setCards(formattedResponse));
+  }, []);
 
   // -- RENDER --
   return (
     <div>
-      <button type="button" onClick={() => setSample(sample + 1)}>
-        Increment Hook State
-      </button>
-      <hr />
-      Sample:
-      {sample}
-      <br />
-      {`Next: ${next}`}
+      <h1>Pathfinder Cards</h1>
+      <h3>Card list</h3>
+      {cards.map((card) => (
+        <p>
+          {card.name}
+        </p>
+      ))}
     </div>
   );
 };
