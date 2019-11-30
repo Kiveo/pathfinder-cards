@@ -16,7 +16,7 @@ const App = () => {
       <h1>Pathfinder Cards</h1>
       <h3>Card list</h3>
       {cards.map((card) => (
-        <p>
+        <p key={card._id}>
           {card.name}
         </p>
       ))}
