@@ -1,26 +1,35 @@
 import React, { useState, useEffect } from 'react';
+import { PageHeading, SubHeading, Page } from 'components/core';
+import { Input } from 'components/inputs';
+import CardList from 'components/cards/CardList';
 
 const App = () => {
   // -- state --
   const [cards, setCards] = useState([]);
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
-    fetch('/cards')
-      .then((response) => response.json())
-      .then((formattedResponse) => setCards(formattedResponse));
-  }, []);
+    const fetchCards = async () => {
+      const cardsResponse = await fetch(`/cards?search=${query}`)
+        .then((response) => response.json());
+      setCards(cardsResponse);
+    };
+    fetchCards();
+  }, [query]);
+
 
   // -- RENDER --
   return (
-    <div>
-      <h1>Pathfinder Cards</h1>
-      <h3>Card list</h3>
-      {cards.map((card) => (
-        <p key={card._id}>
-          {card.name}
-        </p>
-      ))}
-    </div>
+    <Page>
+      <PageHeading>Pathfinder Cards</PageHeading>
+      <SubHeading>Card list</SubHeading>
+      <Input
+        type="text"
+        name="search"
+        onChange={(event) => setQuery(event.target.value)}
+      />
+      {cards.length > 0 && <CardList cards={cards} />}
+    </Page>
   );
 };
 
