@@ -14,7 +14,9 @@ const cardSchema = new mongoose.Schema({
     required: true,
     default: Date.now
   }
-})
+});
+
+cardSchema.index({ name: 'text' });
 
 // model(name of Model, schema for model)
 module.exports = mongoose.model('Card', cardSchema)

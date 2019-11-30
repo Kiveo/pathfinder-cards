@@ -1,20 +1,20 @@
-GET http://localhost:3000/cards
+GET http://localhost:3001/cards
 
 ###
-GET http://localhost:3000/cards/5de1bb95acebae1ee4beae3e
+GET http://localhost:3001/cards/5de1bb95acebae1ee4beae3e
 
 ###
 
-POST http://localhost:3000/cards
+POST http://localhost:3001/cards
 Content-Type: application/json
 
 {
-  "name": "Proto Card",
+  "name": "ConnectedCard",
   "description": "An alpha prototype card"
 }
 
 ###
-PATCH http://localhost:3000/cards/5de1bfc8c891d63d948d1c8c
+PATCH http://localhost:3001/cards/5de1bfc8c891d63d948d1c8c
 Content-Type: application/json
 
 {
@@ -22,4 +22,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3000/cards/5de1bb3b1bd8bd17b02e16fd
+DELETE http://localhost:3001/cards/5de2ff5cbd31793980a4e805

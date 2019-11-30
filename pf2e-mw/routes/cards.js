@@ -5,11 +5,20 @@ const Card = require('../models/card');
 // -- CRUD -- 
 // GET all
 router.get('/', async (req, res) => {
-  try {
-    const cards = await Card.find();
-    res.json(cards);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
+  if (req.query.search) {
+    Card.find({ $text: { $search: req.query.search } }, function (error, cards) {
+      if (error) {
+        res.send(error);
+      }
+      res.json(cards);
+    });
+  } else {
+    try {
+      const cards = await Card.find();
+      res.json(cards);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
   }
 });
 
@@ -58,6 +67,7 @@ router.delete('/:id', getCard, async (req, res) => {
   }
 });
 
+// -- Helpers --
 // MW getter  
 async function getCard(req, res, next) {
   let card;
