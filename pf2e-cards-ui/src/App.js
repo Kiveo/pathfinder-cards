@@ -28,7 +28,7 @@ const App = () => {
         name="search"
         onChange={(event) => setQuery(event.target.value)}
       />
-      {cards.length > 0 && <CardList cards={cards} />}
+      <CardList cards={cards} />
     </Page>
   );
 };

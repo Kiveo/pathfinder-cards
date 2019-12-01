@@ -4,7 +4,7 @@ import Card from './Card';
 
 const CardList = ({ cards }) => (
   <>
-    {cards.length && cards.map((card) => (<Card key={card._id} card={card} />))}
+    {cards.length > 0 && cards.map((card) => (<Card key={card._id} card={card} />))}
   </>
 );
 
