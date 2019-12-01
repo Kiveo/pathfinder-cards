@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { Button, Link } from 'components/inputs';
+import { Quill, Trash } from 'images';
+import TwoButtonWrapper from 'components/inputs/TwoButtonWrapper';
 
 // -- styles --
 const CardWrapper = styled.li`
@@ -12,21 +15,30 @@ const CardWrapper = styled.li`
   font-weight: bold;
   padding: 1rem;
   width: 250px;
-  &:hover {
-    border: 1px solid ${(props) => props.theme.tertiary};
-    color: ${(props) => props.theme.tertiary};
-  };
   hr {
     border: 1px solid ${(props) => props.theme.tertiary};
+  };
+  .card__description {
+    width: 100%;
+    display: inline-block;
+    text-align: left;
+    font-size: 10pt;
+    margin: 0.5rem;
   }
 `;
 
 // -- Component --
 const Card = ({ card }) => (
   <CardWrapper>
-    {card.name}
+    {/* // TODO link when router is setup */}
+    <Link href="#">{card.name}</Link>
     <hr />
-    {card.description}
+    <span className="card__description">{card.description}</span>
+    <hr />
+    <TwoButtonWrapper small>
+      <Button><Quill width="100%" height="80%" /></Button>
+      <Button><Trash width="20px" height="30px" /></Button>
+    </TwoButtonWrapper>
   </CardWrapper>
 );
 

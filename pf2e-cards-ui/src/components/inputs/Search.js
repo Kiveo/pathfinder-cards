@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Button, Form, Input } from 'components/inputs';
+import Button from 'components/inputs/Button';
+import Form from 'components/inputs/Form';
+import Input from 'components/inputs/Input';
+import TwoButtonWrapper from './TwoButtonWrapper';
 
 const StyledSearch = styled(Form)`
   align-items: center;
@@ -13,16 +16,6 @@ const StyledSearch = styled(Form)`
     flex: 1;
     margin: 0.5rem;
   };
-  .twoButtonWrapper {
-    flex: 1;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    button {
-      width: 150px;
-      margin: 0 0.5rem;
-    }
-  }
 `;
 
 const Search = ({ handleSubmit, handleClear, searchRef }) => (
@@ -33,10 +26,10 @@ const Search = ({ handleSubmit, handleClear, searchRef }) => (
       placeholder="Search..."
       ref={searchRef}
     />
-    <div className="twoButtonWrapper">
+    <TwoButtonWrapper>
       <Button type="submit">Search</Button>
       <Button type="button" onClick={() => handleClear()}>Clear</Button>
-    </div>
+    </TwoButtonWrapper>
   </StyledSearch>
 );
 

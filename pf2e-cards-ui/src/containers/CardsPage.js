@@ -51,7 +51,7 @@ const CardsPage = () => {
       <PageHeading>Pathfinder Cards</PageHeading>
       <SubHeading>Sample Cards</SubHeading>
       <CardList cards={state.cards} />
-      <SubHeading>Real Card list</SubHeading>
+      <SubHeading>{`(${cards.length || 0}) Real Card list`}</SubHeading>
       <Search handleSubmit={handleSubmit} handleClear={handleClear} searchRef={searchRef} />
       {loading
         ? <Loader />

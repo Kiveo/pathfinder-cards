@@ -19,7 +19,7 @@ const StyledList = styled.ul`
 
 const CardList = ({ cards }) => (
   <StyledList>
-    {cards.length > 0 && cards.map((card) => (<Card key={card._id} card={card} />))}
+    {cards.length > 0 && cards.map((card) => (<Card key={card._id || card.id} card={card} />))}
   </StyledList>
 );
 
