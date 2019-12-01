@@ -8,11 +8,11 @@ const StyledList = styled.ul`
   padding: 0;
   margin: 0;
   width: 100%;
+  max-width: 1200px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   li {
-    /* flex: 1; */
     margin: 1rem auto;
   };
 `;
