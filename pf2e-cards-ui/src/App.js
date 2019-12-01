@@ -1,15 +1,16 @@
-import React, { useContext } from 'react';
-import { Page, PageHeading } from 'components/core';
-import UserContext from 'UserContext';
+import React, { useContext, useReducer } from 'react';
+import CardContext from 'context';
+import CardsPage from 'containers/CardsPage';
+import cardReducer from './reducer';
 
-// TODO: demo react context hook + useReducer as smallscale alt to Redux
 const App = () => {
-  const value = useContext(UserContext);
+  const initialState = useContext(CardContext);
+  const [state, dispatch] = useReducer(cardReducer, initialState);
 
   return (
-    <Page>
-      <PageHeading>{`Greetings, ${value}`}</PageHeading>
-    </Page>
+    <CardContext.Provider value={{ state, dispatch }}>
+      <CardsPage />
+    </CardContext.Provider>
   );
 };
 

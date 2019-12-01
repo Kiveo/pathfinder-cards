@@ -1,23 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from 'styled-components';
-import './index.css';
 import Theme from 'themes/Theme';
-import UserContext from 'UserContext';
-
-// todo: setup router
 import App from './App';
-// import App from 'containers/CardsPage';
-// import App from './Login';
-// import App from './SignUp';
 import * as serviceWorker from './serviceWorker';
-
-const username = 'Hero';
+import './index.css';
+// todo: setup router
 
 ReactDOM.render(
-  <UserContext.Provider value={username}>
-    <ThemeProvider theme={Theme}><App /></ThemeProvider>
-  </UserContext.Provider>,
+  <ThemeProvider theme={Theme}><App /></ThemeProvider>,
   document.getElementById('root'),
 );
 

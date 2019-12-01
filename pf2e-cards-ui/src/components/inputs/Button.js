@@ -11,6 +11,7 @@ const Button = styled.button`
   border-radius: 5px;
   letter-spacing: 0.1rem;
   outline-color: ${(props) => props.theme.secondary};
+  margin: 0.5rem;
   &:hover {
     border: 0.1rem solid ${(props) => props.theme.tertiary};
     background: ${(props) => props.theme.primary};

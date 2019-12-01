@@ -1,12 +1,17 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, {
+  useState, useEffect, useRef, useContext,
+} from 'react';
 import {
   PageHeading, SubHeading, Page, Loader, ErrorMessage,
 } from 'components/core';
 import CardList from 'components/cards/CardList';
 import Search from 'components/inputs/Search';
+import CardContext from 'context';
 
 const CardsPage = () => {
   // -- Hooks --
+  const { state } = useContext(CardContext);
+
   const [cards, setCards] = useState([]);
   const [query, setQuery] = useState('');
   const searchRef = useRef();
@@ -44,7 +49,9 @@ const CardsPage = () => {
   return (
     <Page>
       <PageHeading>Pathfinder Cards</PageHeading>
-      <SubHeading>Card list</SubHeading>
+      <SubHeading>Sample Cards</SubHeading>
+      <CardList cards={state.cards} />
+      <SubHeading>Real Card list</SubHeading>
       <Search handleSubmit={handleSubmit} handleClear={handleClear} searchRef={searchRef} />
       {loading
         ? <Loader />
