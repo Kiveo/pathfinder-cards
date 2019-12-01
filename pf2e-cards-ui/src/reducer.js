@@ -12,6 +12,14 @@ const cardReducer = (state, action) => {
       return { ...state, cards: newCards };
     }
 
+    // TODO implement and handle api based deletes
+    case 'DELETE_CARD': {
+      // creating a NEW collection, with payload's card removed
+      const newCards = state.cards.filter((card) => card.id !== action.payload.id);
+      // 'Reducing'
+      return { ...state, cards: newCards };
+    }
+
     default:
       return state;
   }

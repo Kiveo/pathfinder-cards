@@ -51,7 +51,7 @@ const Card = ({ card }) => {
       <hr />
       <TwoButtonWrapper small>
         <Button><Quill width="100%" height="80%" /></Button>
-        <Button><Trash width="20px" height="30px" /></Button>
+        <Button onClick={() => dispatch({ type: 'DELETE_CARD', payload: card })}><Trash width="20px" height="30px" /></Button>
       </TwoButtonWrapper>
     </CardWrapper>
   );
