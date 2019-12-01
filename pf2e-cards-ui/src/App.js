@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
-  PageHeading, SubHeading, Page, Loader,
+  PageHeading, SubHeading, Page, Loader, ErrorMessage,
 } from 'components/core';
 import CardList from 'components/cards/CardList';
 import Search from 'components/inputs/Search';
@@ -11,13 +11,19 @@ const App = () => {
   const [query, setQuery] = useState('');
   const searchRef = useRef();
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     setLoading(true);
     const fetchCards = async () => {
-      const cardsResponse = await fetch(`/cards?search=${query}`).then((response) => response.json());
-      setCards(cardsResponse);
-      setLoading(false);
+      try {
+        const cardsResponse = await fetch(`/cards?search=${query}`).then((response) => response.json());
+        setCards(cardsResponse);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
     };
     fetchCards();
   }, [query]);
@@ -43,6 +49,7 @@ const App = () => {
       {loading
         ? <Loader />
         : <CardList cards={cards} />}
+      {error && <ErrorMessage error={error} />}
     </Page>
   );
 };
