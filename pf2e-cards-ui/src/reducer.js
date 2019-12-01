@@ -1,7 +1,9 @@
+import uuidv4 from 'uuidv4';
+
 const cardReducer = (state, action) => {
   switch (action.type) {
     case 'TOGGLE_USED': {
-      // creating a NEW collection, with payload's attribute toggled
+      // create new collection, with payload's attribute toggled
       const newCards = state.cards.map((card) => {
         if (card.id === action.payload.id) {
           return { ...action.payload, used: !action.payload.used };
@@ -14,8 +16,18 @@ const cardReducer = (state, action) => {
 
     // TODO implement and handle api based deletes
     case 'DELETE_CARD': {
-      // creating a NEW collection, with payload's card removed
+      // create new collection, with payload's card removed
       const newCards = state.cards.filter((card) => card.id !== action.payload.id);
+      // 'Reducing'
+      return { ...state, cards: newCards };
+    }
+
+    // TODO implement and handle api based creation
+    case 'CREATE_CARD': {
+      // for non-api/db based creation, we need a new unique id
+      const newCard = { id: uuidv4(), ...action.payload };
+      // create new collection, with payload's card added
+      const newCards = state.cards.concat(newCard);
       // 'Reducing'
       return { ...state, cards: newCards };
     }

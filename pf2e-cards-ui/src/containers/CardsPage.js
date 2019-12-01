@@ -7,6 +7,7 @@ import {
 import CardList from 'components/cards/CardList';
 import Search from 'components/inputs/Search';
 import CardContext from 'context';
+import NewCard from './NewCard';
 
 const CardsPage = () => {
   // -- Hooks --
@@ -49,9 +50,10 @@ const CardsPage = () => {
   return (
     <Page>
       <PageHeading>Pathfinder Cards</PageHeading>
-      <SubHeading>Sample Cards</SubHeading>
+      <NewCard />
+      <SubHeading>Local Cards</SubHeading>
       <CardList cards={state.cards} />
-      <SubHeading>{`(${cards.length || 0}) Real Card list`}</SubHeading>
+      <SubHeading>{`(${cards.length || 0}) Database Cards`}</SubHeading>
       <Search handleSubmit={handleSubmit} handleClear={handleClear} searchRef={searchRef} />
       {loading
         ? <Loader />
