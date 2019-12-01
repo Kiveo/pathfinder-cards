@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 // -- styles --
-const CardWrapper = styled.div`
+const CardWrapper = styled.li`
+  display: block;
   border-radius: 5px;
   border: 1px solid ${(props) => props.theme.secondary};
   background: ${(props) => props.theme.primary};

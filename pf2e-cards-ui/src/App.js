@@ -17,7 +17,6 @@ const App = () => {
     fetchCards();
   }, [query]);
 
-
   // -- RENDER --
   return (
     <Page>
