@@ -7,8 +7,12 @@ const Theme = {
   inputBg: '#c9d0d0',
   pageBg: 'linear-gradient(#bdc3c7,#2c3e50)',
   warning: '#d55',
-  // -- Non-Colors --
+  // -- Font Info --
   primaryFont: 'Open Sans, sans-serif',
+  small: '13px',
+  medium: '16px',
+  large: '18px',
+  xLarge: '20px',
 };
 
 export default Theme;

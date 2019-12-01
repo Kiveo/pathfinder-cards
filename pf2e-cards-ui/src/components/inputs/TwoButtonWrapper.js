@@ -17,7 +17,7 @@ const TwoButtonWrapper = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 12px;
+      font-size: ${props.theme.small};
       padding: 0;
       background: ${props.theme.primary};
       border-color: transparent;
