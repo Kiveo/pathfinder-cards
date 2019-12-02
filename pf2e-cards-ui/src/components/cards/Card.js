@@ -8,6 +8,7 @@ import TwoButtonWrapper from 'components/inputs/TwoButtonWrapper';
 
 // -- styles --
 const CardWrapper = styled.li`
+  margin: 1rem auto;
   display: block;
   border-radius: 5px;
   border: 1px solid ${(props) => props.theme.tertiary};
@@ -15,7 +16,7 @@ const CardWrapper = styled.li`
   color: ${(props) => props.theme.secondary};
   font-weight: bold;
   padding: 1rem;
-  width: 250px;
+  width: 500px;
   hr {
     border: 1px solid ${(props) => props.theme.tertiary};
   };
@@ -29,7 +30,11 @@ const CardWrapper = styled.li`
       font-size: ${(props) => props.theme.small};
       font-weight: normal;
     }
-  }
+  };
+  @media (max-width: 900px) {
+    width: 100%;
+    margin: 1rem 0.5rem;
+  };
 `;
 
 // -- Component --

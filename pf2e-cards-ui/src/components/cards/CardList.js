@@ -12,9 +12,6 @@ const StyledList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  li {
-    margin: 1rem auto;
-  };
 `;
 
 const CardList = ({ cards }) => (

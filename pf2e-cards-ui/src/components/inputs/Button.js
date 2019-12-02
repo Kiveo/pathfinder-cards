@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 const Button = styled.button`
-  font-size: ${(props) => props.theme.xLarge}
+  font-size: ${(props) => props.theme.xLarge};
   background: ${(props) => props.theme.tertiary};
   color: ${(props) => props.theme.secondary};
   font-weight: bold;
   border: none;
-  padding: 0.5rem 1.5rem;
+  padding: 0.25rem 1.5rem;
   border: 0.1rem solid ${(props) => props.theme.tertiary};
   border-radius: 5px;
   letter-spacing: 0.1rem;

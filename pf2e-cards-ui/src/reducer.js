@@ -1,4 +1,4 @@
-import uuidv4 from 'uuidv4';
+import uuidv4 from 'uuid/v4';
 
 const cardReducer = (state, action) => {
   switch (action.type) {

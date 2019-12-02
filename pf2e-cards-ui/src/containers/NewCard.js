@@ -1,35 +1,79 @@
 import React, { useState, useContext } from 'react';
+import styled from 'styled-components';
 import CardContext from 'context';
-import { PageHeading, Page } from 'components/core';
-import { Form, Input, Button } from 'components/inputs';
+import { Page, SubHeading, ErrorMessage } from 'components/core';
+import {
+  Form, Input, Button, TwoButtonWrapper,
+} from 'components/inputs';
 
+// --  styles --
+const NewCardPage = styled(Page)`
+  min-height: 100px;
+  width: calc(100% - 1rem);
+  max-width: 1200px;
+  background: ${(props) => props.theme.primary};
+  border-radius: 5px;
+  border: 1px solid ${(props) => props.theme.tertiary};
+  border-top: 1px solid ${(props) => props.theme.tertiary};
+  border-bottom: 1px solid ${(props) => props.theme.tertiary};
+  button.button__bottom {
+    margin-bottom: 1.5rem;
+  }
+`;
+
+// initial form state
+const initialFormData = {
+  name: '',
+  description: '',
+  used: false,
+};
+
+// -- COMPONENT --
 const NewCard = () => {
   // -- Hooks --
   const { dispatch } = useContext(CardContext);
 
-  const [card, setCard] = useState({
-    name: '',
-    description: '',
-    used: false,
-  });
+  const [cardData, setCardData] = useState(initialFormData);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   // -- Handlers --
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Submitted Form Card:', card);
-    dispatch({ type: 'CREATE_CARD', payload: card });
-    setCard({});
+  const handleChange = (e) => {
+    setCardData({
+      ...cardData,
+      [e.target.name]: e.target.value,
+    });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (cardData.name !== '' && cardData.description !== '') {
+      dispatch({ type: 'CREATE_CARD', payload: cardData });
+      setCardData(initialFormData);
+      setErrorMessage(null);
+    } else {
+      setErrorMessage('Could not submit. Ensure all fields are filled.');
+    }
+  };
+
+  const handleClear = () => {
+    setCardData(initialFormData);
+    setErrorMessage(null);
+  };
+
+  // -- Render --
   return (
-    <Page>
-      <PageHeading>Create New Card</PageHeading>
-      <Form onSubmit={handleSubmit}>
-        <Input name="name" onChange={(e) => setCard({ ...card, name: e.target.value })} value={card.name} />
-        <Input name="description" onChange={(e) => setCard({ ...card, name: e.target.value })} value={card.description} />
-        <Button type="submit">Submit</Button>
+    <NewCardPage>
+      <SubHeading>Create New Card</SubHeading>
+      <Form>
+        <Input name="name" placeholder="Name" onChange={handleChange} value={cardData.name} />
+        <Input name="description" placeholder="Description" onChange={(e) => setCardData({ ...cardData, description: e.target.value })} value={cardData.description} />
+        <TwoButtonWrapper>
+          <Button className="button__bottom" type="submit" onClick={handleSubmit}>Submit</Button>
+          <Button className="button__bottom" type="button" onClick={handleClear}>Clear</Button>
+        </TwoButtonWrapper>
+        {errorMessage && <ErrorMessage error={errorMessage} />}
       </Form>
-    </Page>
+    </NewCardPage>
   );
 };
 

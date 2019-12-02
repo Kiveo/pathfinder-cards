@@ -9,6 +9,8 @@ const Theme = {
   warning: '#d55',
   // -- Font Info --
   primaryFont: 'Open Sans, sans-serif',
+  headingFont: 'Cherry Swash , sans-serif',
+  heading: '36px',
   small: '13px',
   medium: '16px',
   large: '18px',
