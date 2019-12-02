@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-const Link = styled.a`
+const StyledLink = styled(Link)`
   text-decoration: none;
   color: ${(props) => props.theme.tertiary};
   &:hover {
@@ -8,4 +9,4 @@ const Link = styled.a`
   };
 `;
 
-export default Link;
+export default StyledLink;

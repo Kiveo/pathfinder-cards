@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import CardContext from 'context';
 import PropTypes from 'prop-types';
-import { Button, Link, TextButton } from 'components/inputs';
+import { Button, StyledLink, TextButton } from 'components/inputs';
 import { Quill, Trash } from 'images';
 import TwoButtonWrapper from 'components/inputs/TwoButtonWrapper';
 import EditCard from 'containers/EditCard';
@@ -19,7 +19,7 @@ const Card = ({ card }) => {
         : (
           <CardWrapper>
             {/* // TODO link when router is setup */}
-            <Link href={`#${card.name}`}>{card.name}</Link>
+            <StyledLink to={`#${card.name}`}>{card.name}</StyledLink>
             <hr />
             {(card.used != null) && (
               <span className="card__info card__info--normal">
