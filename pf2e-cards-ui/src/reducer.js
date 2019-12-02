@@ -22,6 +22,19 @@ const cardReducer = (state, action) => {
       return { ...state, cards: newCards };
     }
 
+    // TODO implement and handle api based edit/update
+    case 'UPDATE_CARD': {
+      // New collection, with payload's attributes
+      const newCards = state.cards.map((card) => {
+        if (card.id === action.payload.id) {
+          return action.payload;
+        }
+        return card;
+      });
+      // 'Reducing'
+      return { ...state, cards: newCards };
+    }
+
     // TODO implement and handle api based creation
     case 'CREATE_CARD': {
       // for non-api/db based creation, we need a new unique id

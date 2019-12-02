@@ -7,6 +7,7 @@ const Theme = {
   inputBg: '#c9d0d0',
   pageBg: 'linear-gradient(#bdc3c7,#2c3e50)',
   warning: '#d55',
+  disabled: '#333',
   // -- Font Info --
   primaryFont: 'Open Sans, sans-serif',
   headingFont: 'Cherry Swash , sans-serif',

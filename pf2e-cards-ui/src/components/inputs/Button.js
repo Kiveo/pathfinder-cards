@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const Button = styled.button`
   font-size: ${(props) => props.theme.xLarge};
@@ -15,9 +15,16 @@ const Button = styled.button`
   &:hover {
     border: 0.1rem solid ${(props) => props.theme.tertiary};
     background: ${(props) => props.theme.primary};
-    /* background: ${(props) => props.theme.secondary}; */
     color: ${(props) => props.theme.tertiary};
   };
+  ${(props) => props.disabled && css`
+    border: transparent !important;
+    background: ${props.theme.disabled};
+    /* // todo extract svg from button and twobutton code, and bring styles direct from component */
+    svg path {
+    fill: inherit !important;
+    }
+  `};
 `;
 
 export default Button;
