@@ -6,12 +6,15 @@ import {
   Form, Input, TwoButtonWrapper, Button,
 } from 'components/inputs';
 import { ErrorMessage } from 'components/core';
+import useCardValidator from './helpers/useCardValidator';
 
 const EditCard = ({ card, setEditMode }) => {
   // -- Hooks --
   const { dispatch } = useContext(CardContext);
   const [cardData, setCardData] = useState(card);
   const [errorMessage, setErrorMessage] = useState(null);
+  // custom hook
+  const validatedCard = useCardValidator(cardData);
 
   // -- Handlers --
   const handleChange = (e) => {
@@ -29,12 +32,12 @@ const EditCard = ({ card, setEditMode }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (cardData.name !== '' && cardData.description !== '') {
+    if (validatedCard.valid) {
       dispatch({ type: 'UPDATE_CARD', payload: cardData });
       setErrorMessage(null);
       setEditMode(false);
     } else {
-      setErrorMessage('Could not submit. Ensure all fields are filled.');
+      setErrorMessage(validatedCard.message);
     }
   };
 

@@ -3,13 +3,10 @@ import React from 'react';
 const CardContext = React.createContext({
   cards: [
     {
-      id: 1, name: 'Pathfinder Card 1', description: 'Prototype 1', used: false,
+      id: 1, name: 'Spell Card', description: 'Sample spell information. Once spell is cast, click to toggle "used" state.', used: false,
     },
     {
-      id: 2, name: 'Pathfinder Card 2', description: 'Prototype 2', used: false,
-    },
-    {
-      id: 3, name: 'Pathfinder Card 3', description: 'Prototype 3', used: false,
+      id: 2, name: 'Monster Card', description: 'Sample monster information. Used can be toggled to indicate battle or track defeated foes.', used: false,
     },
   ],
 });

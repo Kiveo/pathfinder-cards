@@ -5,6 +5,7 @@ import { Page, SubHeading, ErrorMessage } from 'components/core';
 import {
   Form, Input, Button, TwoButtonWrapper,
 } from 'components/inputs';
+import useCardValidator from './helpers/useCardValidator';
 
 // --  styles --
 const NewCardPage = styled(Page)`
@@ -32,9 +33,9 @@ const initialFormData = {
 const NewCard = () => {
   // -- Hooks --
   const { dispatch } = useContext(CardContext);
-
   const [cardData, setCardData] = useState(initialFormData);
   const [errorMessage, setErrorMessage] = useState(null);
+  const validatedCard = useCardValidator(cardData);
 
   // -- Handlers --
   const handleChange = (e) => {
@@ -46,12 +47,12 @@ const NewCard = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (cardData.name !== '' && cardData.description !== '') {
+    if (validatedCard.valid) {
       dispatch({ type: 'CREATE_CARD', payload: cardData });
       setCardData(initialFormData);
       setErrorMessage(null);
     } else {
-      setErrorMessage('Could not submit. Ensure all fields are filled.');
+      setErrorMessage(validatedCard.message);
     }
   };
 
