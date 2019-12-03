@@ -21,13 +21,15 @@ const Card = ({ card }) => {
             {/* // TODO link when router is setup */}
             <StyledLink to={`#${card.name}`}>{card.name}</StyledLink>
             <hr />
-            {(card.used != null) && (
-              <span className="card__info card__info--normal">
-                Status:
-                <TextButton onClick={() => dispatch({ type: 'TOGGLE_USED', payload: card })}>{card.used ? ' Used' : ' Unused'}</TextButton>
-              </span>
-            )}
-            <span className="card__info">{card.description}</span>
+            <div className="card__info-wrapper">
+              {(card.used != null) && (
+                <span className="card__info card__info--normal">
+                  Status:
+                  <TextButton onClick={() => dispatch({ type: 'TOGGLE_USED', payload: card })}>{card.used ? ' Used' : ' Unused'}</TextButton>
+                </span>
+              )}
+              <span className="card__info">{card.description}</span>
+            </div>
             <hr />
             <TwoButtonWrapper small>
               <Button disabled={!!card._id} onClick={() => setEditMode(true)}><Quill width="100%" height="80%" /></Button>

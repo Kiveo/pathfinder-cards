@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 
 const loaderAnimation = keyframes`
   0% {
@@ -17,6 +17,10 @@ const Loader = styled.div`
   border-radius: 50%;
   border-top-color: ${(props) => props.theme.highlight};
   animation: ${loaderAnimation} 2s infinite linear; 
+  ${(props) => props.searchableSize && css`
+    height: 420px;
+    width: 420px;
+  `};
 `;
 
 export default Loader;

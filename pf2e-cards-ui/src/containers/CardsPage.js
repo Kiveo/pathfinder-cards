@@ -56,8 +56,8 @@ const CardsPage = () => {
       <SubHeading>{`(${cards.length || 0}) Database Cards`}</SubHeading>
       <Search handleSubmit={handleSubmit} handleClear={handleClear} searchRef={searchRef} />
       {loading
-        ? <Loader />
-        : <CardList cards={cards} />}
+        ? <Loader searchableSize />
+        : <CardList cards={cards} searchableSize />}
       {error && <ErrorMessage error={error} />}
     </Page>
   );

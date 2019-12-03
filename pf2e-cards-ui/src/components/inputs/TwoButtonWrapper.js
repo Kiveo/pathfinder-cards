@@ -12,6 +12,7 @@ const TwoButtonWrapper = styled.div`
 
   ${(props) => props.small && css`
     /* Conditional CSS */
+    max-height: 50px;
     button {
       outline: none;
       display: flex;
