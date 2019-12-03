@@ -5,10 +5,9 @@
   "main": "index.js",
   "scripts": {
     "pf2e-cards-ui-install": "npm install --prefix pf2e-cards-ui",
-    "start": "node server.js",
     "server": "nodemon server.js",
     "pf2e-cards-ui": "npm start --prefix pf2e-cards-ui",
-    "dev": "concurrently \"npm run server\" \"npm run pf2e-cards-ui\"",
+    "start": "concurrently \"npm run server\" \"npm run pf2e-cards-ui\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix pf2e-cards-ui && npm run build --prefix pf2e-cards-ui"
   },
   "author": "",

@@ -6,7 +6,7 @@ const path = require('path');
 const port = process.env.PORT;
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://user:password1@ds351628.mlab.com:51628/heroku_0ckwtrmz", { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 const db = mongoose.connection;
 db.on('error', (err) => console.log(err))
 db.once('open', () => console.log("Connection successful"))
