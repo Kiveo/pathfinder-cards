@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 
 import { Page, PageHeading } from 'components/core';
-import { Highlight } from 'components/visual';
+import { WelcomeMessage } from 'components/visual';
 import { Button, Form, Input } from 'components/inputs';
 
 const initialFormData = {
@@ -12,12 +12,12 @@ const initialFormData = {
 };
 
 const SignUp = () => {
-  // -- state --
+  // -- Hooks --
   const [redirectActive, setRedirectActive] = useState(false);
   const [formData, setFormData] = useState(initialFormData);
   const [userData, setUserData] = useState(null);
 
-  // -- handlers --
+  // -- Handlers --
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -40,14 +40,11 @@ const SignUp = () => {
   return (
     <Page>
       <PageHeading>Sign Up</PageHeading>
-      <p>
-        Welcome,
-        <Highlight className="highlight"> Pathfinder</Highlight>
-      </p>
+      <WelcomeMessage name="Pathfinder" />
       <Form>
         <Input type="text" name="username" placeholder="Username" onChange={handleChange} value={formData.username} />
         <Input type="email" name="email" placeholder="E-mail" onChange={handleChange} value={formData.email} />
-        <Input type="password" name="password" placeholder="Password" onChange={handleChange} value={formData.password} />
+        <Input disabled type="password" name="password" placeholder="Password Demo" onChange={handleChange} value={formData.password} />
         <Button type="submit" onClick={handleSubmit}>Submit</Button>
       </Form>
     </Page>

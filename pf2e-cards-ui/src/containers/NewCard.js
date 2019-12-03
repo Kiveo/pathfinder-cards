@@ -17,6 +17,7 @@ const NewCardPage = styled(Page)`
   border: 1px solid ${(props) => props.theme.tertiary};
   border-top: 1px solid ${(props) => props.theme.tertiary};
   border-bottom: 1px solid ${(props) => props.theme.tertiary};
+  margin-bottom: 1rem;
   button.button__bottom {
     margin-bottom: 1.5rem;
   }

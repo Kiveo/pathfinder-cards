@@ -1,2 +1,2 @@
 export { default as Highlight } from './Highlight';
-export { default as Strong } from './Strong';
+export { default as WelcomeMessage } from './WelcomeMessage';

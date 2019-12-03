@@ -4,7 +4,7 @@ import { Page, PageHeading } from 'components/core';
 import {
   Button, Form, Input, StyledLink,
 } from 'components/inputs';
-import { Highlight } from 'components/visual';
+import { WelcomeMessage } from 'components/visual';
 
 // Todo: connect to api and create a user context
 const Login = () => {
@@ -37,12 +37,9 @@ const Login = () => {
     <Page>
       <PageHeading>Sign In</PageHeading>
       <Form>
-        <p>
-          Welcome,
-          <Highlight className="highlight">{username !== '' ? ` ${username}` : ' Hero'}</Highlight>
-        </p>
+        <WelcomeMessage name={username !== '' ? ` ${username}` : ' Hero'} />
         <Input type="text" name="username" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
-        <Input type="password" name="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <Input type="password" name="password" placeholder="Password Demo" value={password} onChange={(e) => setPassword(e.target.value)} />
         <Button type="submit" onClick={handleSubmit}>Submit</Button>
         <StyledLink to="/signup">Sign Up</StyledLink>
       </Form>
