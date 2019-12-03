@@ -6,7 +6,7 @@ const path = require('path');
 const port = process.env.PORT || 3001;
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.DATABASE_URL || MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 const db = mongoose.connection;
 db.on('error', (err) => console.log(err))
 db.once('open', () => console.log("Connection successful"))
