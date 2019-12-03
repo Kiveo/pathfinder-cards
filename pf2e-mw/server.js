@@ -11,7 +11,7 @@ const mongoose = require('mongoose');
 //build modeapp.get('*', (req, res) => {  res.sendFile(path.join(__dirname+'/pf2e-cards-ui/public/index.html'));})
 //start serverapp.listen(port, (req, res) => {  console.log( `server listening on port: ${port}`);})
 
-mongoose.connect(process.env.DATABASE_URL || "mongodb://user:password1@ds351628.mlab.com:51628/heroku_1vgc3cv6", { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 const db = mongoose.connection;
 db.on('error', (err) => console.log(err))
 db.once('open', () => console.log("Connection successful"))
