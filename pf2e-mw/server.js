@@ -23,7 +23,7 @@ app.use('/', (req, res, next) => {
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('pf2e-cards-ui/build'));
   app.get('*', (req, res) => {
-    res.sendFile(path.join('build', 'index.html'));
+    res.sendFile(path.join('pf2e-cards-ui', 'build', 'index.html'));
   });
 }
 
