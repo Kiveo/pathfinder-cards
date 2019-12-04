@@ -24,9 +24,9 @@ if (process.env.NODE_ENV === 'production') {
 
 // routes
 const cardsRouter = require('./routes/cards');
-app.use('/cards', cardsRouter);
-app.use('/', (req, res, next) => {
-  res.redirect('/cards')
+app.use('/api/cards', cardsRouter);
+app.use('/api', (req, res, next) => {
+  res.redirect('/api/cards')
 })
 
 

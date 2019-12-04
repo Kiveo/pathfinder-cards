@@ -23,7 +23,7 @@ const CardsPage = () => {
     setLoading(true);
     const fetchCards = async () => {
       try {
-        const cardsResponse = await fetch(`/cards?search=${query}`).then((response) => response.json());
+        const cardsResponse = await fetch(`api/cards?search=${query}`).then((response) => response.json());
         setCards(cardsResponse);
         setLoading(false);
       } catch (err) {
