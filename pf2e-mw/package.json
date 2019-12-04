@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "NODE_ENV=production node index.js",
     "pf2e-cards-ui-install": "npm install --prefix pf2e-cards-ui",
     "server": "nodemon server.js",
     "pf2e-cards-ui": "npm start --prefix pf2e-cards-ui",
-    "start": "concurrently \"npm run server\" \"npm run pf2e-cards-ui\"",
+    "dev": "concurrently \"npm run server\" \"npm run pf2e-cards-ui\"",
     "heroku-postbuild": "cd pf2e-cards-ui && npm install && npm run build"
   },
   "author": "",
