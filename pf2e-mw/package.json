@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=production node index.js",
+    "start": "NODE_ENV=production node server.js",
     "pf2e-cards-ui-install": "npm install --prefix pf2e-cards-ui",
     "server": "nodemon server.js",
     "pf2e-cards-ui": "npm start --prefix pf2e-cards-ui",
