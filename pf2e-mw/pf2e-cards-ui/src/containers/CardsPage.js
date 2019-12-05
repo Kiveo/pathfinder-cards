@@ -6,7 +6,7 @@ import {
 } from 'components/core';
 import CardList from 'components/cards/CardList';
 import Search from 'components/inputs/Search';
-import CardContext from 'context';
+import CardContext from 'context/CardContext';
 import NewCard from './NewCard';
 
 const CardsPage = () => {

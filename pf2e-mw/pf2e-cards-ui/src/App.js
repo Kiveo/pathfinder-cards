@@ -5,10 +5,11 @@ import {
   Route,
 } from 'react-router-dom';
 
-import CardContext from 'context';
+import CardContext from 'context/CardContext';
 import CardsPage from 'containers/CardsPage';
 import SignUp from 'SignUp';
 import Login from 'Login';
+import UserContext from 'context/UserContext';
 import cardReducer from './reducer';
 
 const App = () => {
@@ -18,17 +19,19 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/signup">
-          <SignUp />
-        </Route>
-        <Route path="/cards">
-          <CardContext.Provider value={{ state, dispatch }}>
-            <CardsPage />
-          </CardContext.Provider>
-        </Route>
-        <Route path="/">
-          <Login />
-        </Route>
+        <UserContext.Provider value="User Sample">
+          <Route path="/signup">
+            <SignUp />
+          </Route>
+          <Route path="/cards">
+            <CardContext.Provider value={{ state, dispatch }}>
+              <CardsPage />
+            </CardContext.Provider>
+          </Route>
+          <Route path="/">
+            <Login />
+          </Route>
+        </UserContext.Provider>
       </Switch>
     </Router>
   );

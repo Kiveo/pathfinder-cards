@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import CardContext from 'context';
+import CardContext from 'context/CardContext';
 
 // simple card form validation, versaility of hooks with a custom hook and useContext
 export default function useCardValidator(formData) {

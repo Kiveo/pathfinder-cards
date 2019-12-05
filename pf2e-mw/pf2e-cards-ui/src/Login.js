@@ -1,18 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Page, PageHeading } from 'components/core';
 import {
   Button, Form, Input, StyledLink,
 } from 'components/inputs';
 import { WelcomeMessage } from 'components/visual';
+import UserContext from 'context/UserContext';
 
 // Todo: connect to api and create a user context
 const Login = () => {
-  // -- state --
+  // -- Hooks --
+  const userContext = useContext(UserContext);
   const [redirectActive, setRedirectActive] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    if (userContext !== {}) { console.log('Detected userContext', userContext); }
+  }, [userContext]);
 
   // -- handlers --
   const handleSubmit = (e) => {
