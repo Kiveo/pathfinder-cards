@@ -1,4 +1,4 @@
-import React, { useContext, useReducer, useState } from 'react';
+import React, { useState } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -6,16 +6,13 @@ import {
   Redirect,
 } from 'react-router-dom';
 
-import CardContext from 'context/CardContext';
 import CardsPage from 'containers/CardsPage';
 import SignUp from 'SignUp';
 import Login from 'Login';
 import UserContext from 'context/UserContext';
-import cardReducer from './reducer';
+import CardContextProvider from 'context/CardContext';
 
 const App = () => {
-  const initialCards = useContext(CardContext);
-  const [cardsState, dispatch] = useReducer(cardReducer, initialCards);
   const [userState, setUserState] = useState({});
 
   return (
@@ -29,9 +26,9 @@ const App = () => {
             <SignUp />
           </Route>
           <Route path="/cards">
-            <CardContext.Provider value={{ cardsState, dispatch }}>
+            <CardContextProvider>
               <CardsPage />
-            </CardContext.Provider>
+            </CardContextProvider>
           </Route>
           <Route path="*">
             <Redirect to="/" />
