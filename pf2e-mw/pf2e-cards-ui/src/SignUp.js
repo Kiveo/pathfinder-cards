@@ -54,7 +54,7 @@ const SignUp = () => {
         <Input type="email" name="email" placeholder="E-mail" onChange={handleChange} value={formData.email} />
         <Input disabled type="password" name="password" placeholder="Password Demo" onChange={handleChange} value={formData.password} />
         <Button type="submit" onClick={handleSubmit}>Submit</Button>
-        <StyledLink to="/login">Log In</StyledLink>
+        <StyledLink to="/">Log In</StyledLink>
       </Form>
     </Page>
   );
