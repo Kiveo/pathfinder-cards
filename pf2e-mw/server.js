@@ -18,7 +18,7 @@ app.use(express.json());
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('pf2e-cards-ui/build'));
   app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, __dirname, 'pf2e-cards-ui/build/index.html'), function (err) {
+    res.sendFile(path.join(__dirname, 'pf2e-cards-ui/build/index.html'), function (err) {
       if (err) {
         res.status(500).send(err)
       }
