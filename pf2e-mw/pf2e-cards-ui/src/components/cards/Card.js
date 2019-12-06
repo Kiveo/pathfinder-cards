@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import CardContext from 'context';
+import CardContext from 'context/CardContext';
 import PropTypes from 'prop-types';
 import { Button, StyledLink, TextButton } from 'components/inputs';
 import { Quill, Trash } from 'images';

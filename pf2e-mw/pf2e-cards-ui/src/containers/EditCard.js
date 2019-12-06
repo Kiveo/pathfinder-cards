@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import CardContext from 'context';
+import CardContext from 'context/CardContext';
 import CardWrapper from 'components/cards/CardWrapper';
 import {
   Form, Input, TwoButtonWrapper, Button,

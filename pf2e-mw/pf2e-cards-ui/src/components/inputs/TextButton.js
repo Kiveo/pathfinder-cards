@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Button from './Button';
 
 const TextButton = styled(Button)`
@@ -12,6 +12,11 @@ const TextButton = styled(Button)`
     color: ${(props) => props.theme.highlight};
     border: none;
   };
+  ${(props) => props.linkStyle && css`{
+    &:hover {
+      background: transparent;
+    };
+  `};
 `;
 
 export default TextButton;

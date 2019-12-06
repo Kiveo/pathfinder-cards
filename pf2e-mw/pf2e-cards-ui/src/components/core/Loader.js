@@ -20,6 +20,8 @@ const Loader = styled.div`
   ${(props) => props.searchableSize && css`
     height: 420px;
     width: 420px;
+    max-width: calc(100vw - 10vw);
+    max-height: calc(100vw - 10vw);
   `};
 `;
 

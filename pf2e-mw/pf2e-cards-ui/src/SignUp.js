@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 
 import { Page, PageHeading } from 'components/core';
 import { WelcomeMessage } from 'components/visual';
-import { Button, Form, Input } from 'components/inputs';
+import {
+  Button, Form, Input, StyledLink,
+} from 'components/inputs';
+import UserContext from 'context/UserContext';
 
 const initialFormData = {
   username: '',
@@ -13,9 +16,15 @@ const initialFormData = {
 
 const SignUp = () => {
   // -- Hooks --
+  const { userState, setUserState } = useContext(UserContext);
   const [redirectActive, setRedirectActive] = useState(false);
   const [formData, setFormData] = useState(initialFormData);
-  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    if (userState.username) {
+      setRedirectActive(true);
+    }
+  }, [userState.username]);
 
   // -- Handlers --
   const handleChange = (e) => {
@@ -27,9 +36,8 @@ const SignUp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setUserData(formData);
     setFormData(initialFormData);
-    console.log('Rolling initiative for ', userData || 'the new hero');
+    setUserState({ username: formData.username });
     setRedirectActive(true);
   };
 
@@ -46,6 +54,7 @@ const SignUp = () => {
         <Input type="email" name="email" placeholder="E-mail" onChange={handleChange} value={formData.email} />
         <Input disabled type="password" name="password" placeholder="Password Demo" onChange={handleChange} value={formData.password} />
         <Button type="submit" onClick={handleSubmit}>Submit</Button>
+        <StyledLink to="/login">Log In</StyledLink>
       </Form>
     </Page>
   );

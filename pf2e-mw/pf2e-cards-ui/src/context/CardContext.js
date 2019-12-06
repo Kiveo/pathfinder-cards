@@ -1,7 +1,7 @@
 import React from 'react';
 
 const CardContext = React.createContext({
-  cards: [
+  samples: [
     {
       id: 1, name: 'Spell Card', description: 'Sample spell information. Once spell is cast, click to toggle "used" state.', used: false,
     },

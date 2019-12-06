@@ -6,12 +6,12 @@ import {
 } from 'components/core';
 import CardList from 'components/cards/CardList';
 import Search from 'components/inputs/Search';
-import CardContext from 'context';
+import CardContext from 'context/CardContext';
 import NewCard from './NewCard';
 
 const CardsPage = () => {
   // -- Hooks --
-  const { state } = useContext(CardContext);
+  const { cardsState } = useContext(CardContext);
 
   const [cards, setCards] = useState([]);
   const [query, setQuery] = useState('');
@@ -20,18 +20,27 @@ const CardsPage = () => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
+    // in case async is happening on unmount, we can abort during cleanup
+    const abortController = new AbortController();
     setLoading(true);
     const fetchCards = async () => {
       try {
-        const cardsResponse = await fetch(`api/cards?search=${query}`).then((response) => response.json());
+        const cardsResponse = await fetch(`api/cards?search=${query}`, { signal: abortController.signal })
+          .then((response) => response.json());
+
         setCards(cardsResponse);
         setLoading(false);
       } catch (err) {
-        setError(err.message);
-        setLoading(false);
+        if (!abortController.signal.aborted) {
+          setError(err.message);
+          setLoading(false);
+        }
       }
     };
     fetchCards();
+    return () => {
+      abortController.abort();
+    };
   }, [query]);
 
   // -- Handlers --
@@ -52,7 +61,7 @@ const CardsPage = () => {
       <PageHeading>Pathfinder Cards</PageHeading>
       <NewCard />
       <SubHeading>Local Cards</SubHeading>
-      <CardList cards={state.cards} />
+      <CardList cards={cardsState.samples} />
       <SubHeading>{`(${cards.length || 0}) Database Cards`}</SubHeading>
       <Search handleSubmit={handleSubmit} handleClear={handleClear} searchRef={searchRef} />
       {loading
