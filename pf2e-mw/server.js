@@ -15,13 +15,6 @@ db.once('open', () => console.log("Connection successful"))
 
 app.use(express.json());
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('pf2e-cards-ui/build'));
-  app.get('api/*', (req, res) => {
-    res.sendFile(path.join('pf2e-cards-ui', 'build', 'index.html'));
-  });
-}
-
 // routes
 const cardsRouter = require('./routes/cards');
 app.use('/api/cards', cardsRouter);
@@ -29,5 +22,15 @@ app.use('/api', (req, res, next) => {
   res.redirect('/api/cards')
 })
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('pf2e-cards-ui/build'));
+  app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'pf2e-cards-ui/build/index.html'), function (err) {
+      if (err) {
+        res.status(500).send(err)
+      }
+    })
+  });
+}
 
 app.listen(port, () => console.log("Server listening..."));
