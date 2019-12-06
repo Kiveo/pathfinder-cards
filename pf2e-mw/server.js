@@ -17,10 +17,16 @@ app.use(express.json());
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('pf2e-cards-ui/build'));
-  app.get('api/*', (req, res) => {
-    res.sendFile(path.join('pf2e-cards-ui', 'build', 'index.html'));
+  app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, __dirname, 'pf2e-cards-ui/build/index.html'), function (err) {
+      if (err) {
+        res.status(500).send(err)
+      }
+    })
   });
 }
+app.get('/*', function (req, res) {
+})
 
 // routes
 const cardsRouter = require('./routes/cards');
