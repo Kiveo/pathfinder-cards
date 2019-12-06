@@ -3,8 +3,8 @@ import CardContext from 'context/CardContext';
 
 // simple card form validation, versaility of hooks with a custom hook and useContext
 export default function useCardValidator(formData) {
-  const { state } = useContext(CardContext);
-  const preExisting = state.cards.find((card) => card.name === formData.name);
+  const { cardsState } = useContext(CardContext);
+  const preExisting = cardsState.samples.find((card) => card.name === formData.name);
 
   if (formData.name === '' || formData.description === '') {
     return { valid: false, message: 'Ensure all fields are filled in.' };
