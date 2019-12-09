@@ -17,13 +17,13 @@ export const CardContext = React.createContext({
 
 const CardContextProvider = ({ children }) => {
   const initialCards = useContext(CardContext);
-  const [cardsState, dispatch] = useReducer(cardReducer, [], () => {
-    const localCards = localStorage.getItem('cardsState');
+  const [cardsState, dispatch] = useReducer(cardReducer, initialCards, () => {
+    const localCards = sessionStorage.getItem('cardsState');
     return localCards ? JSON.parse(localCards) : initialCards;
   });
 
   useEffect(() => {
-    localStorage.setItem('cardsState', JSON.stringify(cardsState));
+    sessionStorage.setItem('cardsState', JSON.stringify(cardsState));
   }, [cardsState]);
 
   return (

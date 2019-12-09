@@ -60,7 +60,7 @@ const CardsPage = () => {
     <Page>
       <PageHeading>Pathfinder Cards</PageHeading>
       <NewCard />
-      <SubHeading>Local Cards</SubHeading>
+      <SubHeading>Temporary Cards</SubHeading>
       <CardList cards={cardsState.samples} />
       <SubHeading>{`(${cards.length || 0}) Database Cards`}</SubHeading>
       <Search handleSubmit={handleSubmit} handleClear={handleClear} searchRef={searchRef} />
