@@ -7,6 +7,8 @@ const userReducer = (userState, action) => {
 
     case 'LOG_OUT': {
       const blankUser = { username: null, isLoggedIn: false };
+      // wipe out sessionStorage
+      sessionStorage.clear();
       return blankUser;
     }
 
