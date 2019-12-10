@@ -10,6 +10,12 @@ const TwoButtonWrapper = styled.div`
     margin: 0 0.5rem;
   };
 
+  @media (max-width: 350px) {
+    button {
+      width: 100%;
+    }
+  }
+
   ${(props) => props.small && css`
     /* Conditional CSS */
     max-height: 50px;

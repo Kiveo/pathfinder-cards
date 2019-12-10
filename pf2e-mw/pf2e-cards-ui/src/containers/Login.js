@@ -5,28 +5,27 @@ import {
   Button, Form, Input, StyledLink, TextButton,
 } from 'components/inputs';
 import { WelcomeMessage } from 'components/visual';
-import UserContext from 'context/UserContext';
+import { UserContext } from 'context/UserContext';
 
 // Todo: connect to api and create a user context
 const Login = () => {
   // -- Hooks --
-  const { userState, setUserState } = useContext(UserContext);
+  const { userState, dispatch } = useContext(UserContext);
+
   const [redirectActive, setRedirectActive] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   // -- handlers --
+  // TODO implement API and refactor
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO implement API and refactor
-    // const user = {
-    //   username,
-    //   password,
-    // };
-    setUsername('');
-    setPassword('');
-    setUserState({ username });
-    // setRedirectActive(true);
+    if (username !== '') {
+      setUsername('');
+      setPassword('');
+      dispatch({ type: 'LOG_IN', payload: { username } });
+      // setRedirectActive(true);
+    }
   };
 
   // -- Render --
@@ -37,13 +36,13 @@ const Login = () => {
   return (
     <Page>
       <PageHeading>Sign In</PageHeading>
-      {userState.username
+      {userState && userState.isLoggedIn
         ? (
           <>
             <WelcomeMessage name={userState.username} />
             <p>Status: Logged in</p>
             <Button type="button" onClick={() => setRedirectActive(true)}>Continue</Button>
-            <TextButton linkStyle type="button" onClick={() => setUserState({})}>Logout</TextButton>
+            <TextButton linkStyle type="button" onClick={() => dispatch({ type: 'LOG_OUT' })}>Logout</TextButton>
           </>
         )
         : (

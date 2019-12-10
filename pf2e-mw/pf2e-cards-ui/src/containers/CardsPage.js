@@ -6,13 +6,12 @@ import {
 } from 'components/core';
 import CardList from 'components/cards/CardList';
 import Search from 'components/inputs/Search';
-import CardContext from 'context/CardContext';
+import { CardContext } from 'context/CardContext';
 import NewCard from './NewCard';
 
 const CardsPage = () => {
-  // -- Hooks --
+  // -- HOOKS --
   const { cardsState } = useContext(CardContext);
-
   const [cards, setCards] = useState([]);
   const [query, setQuery] = useState('');
   const searchRef = useRef();
@@ -43,7 +42,7 @@ const CardsPage = () => {
     };
   }, [query]);
 
-  // -- Handlers --
+  // -- HANDLERS --
   const handleSubmit = (e) => {
     e.preventDefault();
     setQuery(searchRef.current.value);
@@ -60,7 +59,7 @@ const CardsPage = () => {
     <Page>
       <PageHeading>Pathfinder Cards</PageHeading>
       <NewCard />
-      <SubHeading>Local Cards</SubHeading>
+      <SubHeading>Temporary Cards</SubHeading>
       <CardList cards={cardsState.samples} />
       <SubHeading>{`(${cards.length || 0}) Database Cards`}</SubHeading>
       <Search handleSubmit={handleSubmit} handleClear={handleClear} searchRef={searchRef} />

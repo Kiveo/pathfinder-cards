@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
-import CardContext from 'context/CardContext';
+import { CardContext } from 'context/CardContext';
 import { Page, SubHeading, ErrorMessage } from 'components/core';
 import {
   Form, Input, Button, TwoButtonWrapper,

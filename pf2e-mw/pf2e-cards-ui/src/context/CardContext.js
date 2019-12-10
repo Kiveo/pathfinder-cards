@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useContext, useReducer, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import cardReducer from 'reducer';
 
-const CardContext = React.createContext({
+
+export const CardContext = React.createContext({
   samples: [
     {
       id: 1, name: 'Spell Card', description: 'Sample spell information. Once spell is cast, click to toggle "used" state.', used: false,
@@ -12,4 +15,26 @@ const CardContext = React.createContext({
 });
 
 
-export default CardContext;
+const CardContextProvider = ({ children }) => {
+  const initialCards = useContext(CardContext);
+  const [cardsState, dispatch] = useReducer(cardReducer, initialCards, () => {
+    const localCards = sessionStorage.getItem('cardsState');
+    return localCards ? JSON.parse(localCards) : initialCards;
+  });
+
+  useEffect(() => {
+    sessionStorage.setItem('cardsState', JSON.stringify(cardsState));
+  }, [cardsState]);
+
+  return (
+    <CardContext.Provider value={{ cardsState, dispatch }}>
+      {children}
+    </CardContext.Provider>
+  );
+};
+
+CardContextProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+export default CardContextProvider;

@@ -1,45 +1,45 @@
-import React, { useContext, useReducer, useState } from 'react';
+import React from 'react';
 import {
-  BrowserRouter as Router,
+  Router,
   Switch,
   Route,
   Redirect,
 } from 'react-router-dom';
 
-import CardContext from 'context/CardContext';
+import PrivateRoute from 'ui-routes/PrivateRoute';
+import history from 'utils/history';
 import CardsPage from 'containers/CardsPage';
-import SignUp from 'SignUp';
-import Login from 'Login';
-import UserContext from 'context/UserContext';
-import cardReducer from './reducer';
+import UserContextProvider from 'context/UserContext';
+import CardContextProvider from 'context/CardContext';
 
-const App = () => {
-  const initialCards = useContext(CardContext);
-  const [cardsState, dispatch] = useReducer(cardReducer, initialCards);
-  const [userState, setUserState] = useState({});
+import SignUp from 'containers/SignUp';
+import Login from 'containers/Login';
 
-  return (
-    <Router>
-      <Switch>
-        <UserContext.Provider value={{ userState, setUserState }}>
-          <Route exact path="/">
-            <Login />
-          </Route>
-          <Route exact path="/signup">
-            <SignUp />
-          </Route>
-          <Route path="/cards">
-            <CardContext.Provider value={{ cardsState, dispatch }}>
-              <CardsPage />
-            </CardContext.Provider>
-          </Route>
-          <Route path="*">
-            <Redirect to="/" />
-          </Route>
-        </UserContext.Provider>
-      </Switch>
-    </Router>
-  );
-};
+// Todo: extract and expand routing
+const App = () => (
+  <Router history={history}>
+    <Switch>
+      <UserContextProvider>
+        <Route exact path="/">
+          <Login />
+        </Route>
+
+        <Route exact path="/signup">
+          <SignUp />
+        </Route>
+
+        <PrivateRoute path="/cards">
+          <CardContextProvider>
+            <CardsPage />
+          </CardContextProvider>
+        </PrivateRoute>
+
+        <Route path="*">
+          <Redirect to="/" />
+        </Route>
+      </UserContextProvider>
+    </Switch>
+  </Router>
+);
 
 export default App;
