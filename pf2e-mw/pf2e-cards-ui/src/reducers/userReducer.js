@@ -1,3 +1,5 @@
+import history from 'utils/history';
+
 const userReducer = (userState, action) => {
   switch (action.type) {
     case 'LOG_IN': {
@@ -9,6 +11,7 @@ const userReducer = (userState, action) => {
       const blankUser = { username: null, isLoggedIn: false };
       // wipe out sessionStorage
       sessionStorage.clear();
+      history.push('/');
       return blankUser;
     }
 

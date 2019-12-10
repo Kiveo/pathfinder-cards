@@ -1,32 +1,39 @@
 import React from 'react';
 import {
-  BrowserRouter as Router,
+  Router,
   Switch,
   Route,
   Redirect,
 } from 'react-router-dom';
 
+import PrivateRoute from 'ui-routes/PrivateRoute';
+import history from 'utils/history';
 import CardsPage from 'containers/CardsPage';
-import SignUp from 'containers/SignUp';
-import Login from 'containers/Login';
 import UserContextProvider from 'context/UserContext';
 import CardContextProvider from 'context/CardContext';
 
+import SignUp from 'containers/SignUp';
+import Login from 'containers/Login';
+
+// Todo: extract and expand routing
 const App = () => (
-  <Router>
+  <Router history={history}>
     <Switch>
       <UserContextProvider>
         <Route exact path="/">
           <Login />
         </Route>
+
         <Route exact path="/signup">
           <SignUp />
         </Route>
-        <Route path="/cards">
+
+        <PrivateRoute path="/cards">
           <CardContextProvider>
             <CardsPage />
           </CardContextProvider>
-        </Route>
+        </PrivateRoute>
+
         <Route path="*">
           <Redirect to="/" />
         </Route>

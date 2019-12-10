@@ -10,9 +10,8 @@ import { CardContext } from 'context/CardContext';
 import NewCard from './NewCard';
 
 const CardsPage = () => {
-  // -- Hooks --
+  // -- HOOKS --
   const { cardsState } = useContext(CardContext);
-
   const [cards, setCards] = useState([]);
   const [query, setQuery] = useState('');
   const searchRef = useRef();
@@ -43,7 +42,7 @@ const CardsPage = () => {
     };
   }, [query]);
 
-  // -- Handlers --
+  // -- HANDLERS --
   const handleSubmit = (e) => {
     e.preventDefault();
     setQuery(searchRef.current.value);
