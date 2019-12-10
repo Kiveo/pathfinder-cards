@@ -13,7 +13,6 @@ const TwoButtonWrapper = styled.div`
   @media (max-width: 350px) {
     button {
       width: 100%;
-      background: red;
     }
   }
 
