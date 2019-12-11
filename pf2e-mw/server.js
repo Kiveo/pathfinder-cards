@@ -18,9 +18,14 @@ app.use(express.json());
 // routes
 const cardsRouter = require('./routes/cards');
 app.use('/api/cards', cardsRouter);
+
+const usersRouter = require('./routes/users');
+app.use('/api/users', usersRouter);
+
 app.use('/api', (req, res, next) => {
   res.redirect('/api/cards')
 })
+
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('pf2e-cards-ui/build'));
